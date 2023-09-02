@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Edit Tree</title>
+</head>
+<body>
+  <div style="display: flex;">
+    <h1> Arbortary </h1>
+    <h1 style="margin-left: 65%;">Welcome, {{user.first_name}}</h1>
+    <a href="/user/account/{{user.id}}" class= 'btn btn-success' style="margin-left: 2%;" >My tress</a>
+    
+  </div>
+  <p class="color">A site to track randomly planted tress</p>
+    <div style="display: flex;">
+      <a href="/dashboard" class= 'btn btn-success' style="margin-left: 70%;">Home</a>
+      <a href="/logout" class= 'btn btn-success' style="margin-left: 5%;">Logout</a>
+    </div>
+
+  <div>
+    <h2>Manage My Trees</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>location</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+        
+      <tbody>
+        {% for tree in user.trees %}
+        <tr>
+          <td>{{tree.species}}</td>
+          
+          <td> {{tree.location}}
+          </td>
+          <td>
+            {% if session['user.id'] == tree.creator.id %}
+              <a href="/tree/edit/{{tree.id}}" >Edit</a>
+              <a href="/tree/destroy/{{tree.id}}">Delete</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

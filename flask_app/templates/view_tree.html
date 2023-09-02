@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>View Tree</title>
+</head>
+<body>
+  <div>
+    <div style="display: flex;">
+  <h1> Arbortary </h1>
+  <h1 style="margin-left: 60%;">Welcome, {{user.first_name}} </h1>
+  <a href="/user/account/{{user.id}}" class= 'btn btn-success' style="margin-left: 2%;" >My tress</a>
+  
+</div>
+<p class="color">A site to track randomly planted tress</p>
+  <div style="display: flex;">
+    <a href="/dashboard" class= 'btn btn-success' style="margin-left: 70%;">Home</a>
+    <a href="/logout" class= 'btn btn-success' style="margin-left: 5%;">Logout</a>
+  </div>
+  
+      
+    <div class="row justify-content-between mt-5">
+      <h2 class='fs-1 col-6'>{{tree.species}}</h2>
+      <h2 class="fs-3 col-6 text-end">Posted by: {{tree.creator.first_name}}</h2>
+    </div>
+  
+    <div class="row border border-dark border-4 rounded rounded-3 p-3 fs-4">
+      <div class="row mb-3">
+          <h2 class="col-4">Location: {{tree.location}}</h2>
+          
+      </div>
+      <div class="row mb-3">
+        <h2 class="col-4">Reason: {{tree.reason}}</h2>
+        
+      </div>
+      <div class="row mb-3">
+        <h2 class="col-4">Date Made:</h2>
+        <h2>{{tree.date_planted.strftime('%B %dth, %Y')}}</h2>
+      </div>
+</body>
+</html>

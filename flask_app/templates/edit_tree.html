@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Edit Tree</title>
+</head>
+<body>
+  <div style="display: flex;">
+    <h1> Arbortary </h1>
+    <h1 style="margin-left: 65%;">Welcome, {{user.first_name}}</h1>
+    <a href="/user/account/{{user.id}}" class= 'btn btn-success' style="margin-left: 2%;" >My trees</a>
+    
+  </div>
+  <p class="color">A site to track randomly planted tress</p>
+    <div style="display: flex;">
+      <a href="/dashboard" class= 'btn btn-success' style="margin-left: 70%;">Home</a>
+      <a href="/logout" class= 'btn btn-success' style="margin-left: 5%;">Logout</a>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="alert alert-danger card invalid-feedback mx-0 mb-0 p-1 text-center">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <form action="/tree/edit/process/{{tree.id}}" method="post" class="card col-12 mx-auto bg-secondary text-white p-3">
+        <div class="row">
+            <div class="col-4 offset-1">
+                <div class="form-group mb-3">
+                    <label for="species" class="form-label">Species:</label>
+                    <input type="text" name="species" id="species" class="form-control" value="{{tree.species}}">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="location" class="form-label">location:</label>
+                    <input type='text' name="location" id="location" class="form-control" value="{{tree.location}}"></input>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="reason" class="form-label">Reason:</label>
+                    <textarea name="reason" id="reason" class="form-control">{{tree.reason}}</textarea>
+                </div>
+            </div>
+            <div class="offset-2 col-4">
+                <div class="form-group mb-3">
+                    <label for="date_planted" class="form-label">Date Made On:</label>
+                    <input type="date" name="date_planted" id="date_planted" class="form-control" value= {{tree.date_planted}}>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success mt-2 border border-1">Update</button>
+    </form>
+  </div>
+</body>
+</html>
